@@ -1,0 +1,3 @@
+[submodule "vendor/awstools"]
+	path = vendor/awstools
+	url = git@github.com:chrismeller/awstools.git
