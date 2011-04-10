@@ -20,6 +20,25 @@
 			
 		}
 		
+		public function get_channels ( ) {
+			
+			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'channels\'' );
+			
+			$channels = array();
+			foreach ( $result->response as $item ) {
+				
+				foreach ( $item->Attribute as $attribute ) {
+					
+					$channels[] = (string)$attribute->Name;
+					
+				}
+				
+			}
+			
+			return $channels;
+			
+		}
+		
 	}
 
 ?>
