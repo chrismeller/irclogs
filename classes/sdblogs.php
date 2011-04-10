@@ -4,7 +4,8 @@
 		
 		protected $sdb = null;
 		
-		protected $domain;
+		protected $index_domain;
+		protected $data_domain;
 		
 		public function __construct ( ) {
 			
