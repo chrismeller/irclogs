@@ -9,8 +9,6 @@
 		
 		public function __construct ( ) {
 			
-			parent::__construct();
-			
 			require_once( Kohana::find_file( 'vendor', 'awstools/aws' ) );
 			
 			$this->data_domain = Kohana::config( 'sdb-logs-viewer.data_domain' );
