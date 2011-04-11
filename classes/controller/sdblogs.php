@@ -28,6 +28,7 @@
 			
 			$this->template->title = 'Logs :: ' . $channel;
 			$this->template->content = View::factory('sdblogs/channel')
+				->bind('channel', $channel)
 				->bind('years', $years);
 			
 		}
