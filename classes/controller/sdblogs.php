@@ -24,6 +24,9 @@
 		
 		public function action_channel ( $channel ) {
 			
+			// get the full channel name
+			$channel = $this->logs->get_channel_name($channel);
+			
 			$years = $this->logs->get_channel_years( $channel );
 			
 			$this->template->title = 'Logs :: ' . $channel;
