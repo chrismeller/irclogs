@@ -1,6 +1,6 @@
 <?php
 
-	Route::set( 'sdblogs-channel', 'sdblogs/<channel>', array( 'channel' => '.*' ) )
+	Route::set( 'sdblogs-channel', 'sdblogs/<channel>' )
 		->defaults( array(
 			'controller' => 'sdblogs',
 			'action' => 'channel',
