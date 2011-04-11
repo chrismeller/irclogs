@@ -39,6 +39,22 @@
 			
 		}
 		
+		public function get_channel_name ( $channel ) {
+			
+			$channels = $this->get_channels();
+			
+			foreach ( $channels as $c ) {
+				
+				if ( ltrim( $c, '#&+!' ) == $channel ) {
+					return $channel;
+				}
+				
+			}
+			
+			return false;
+			
+		}
+		
 		public function get_channel_years ( $channel ) {
 			
 			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'' . $channel . '\'' );
