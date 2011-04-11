@@ -46,12 +46,12 @@
 			foreach ( $channels as $c ) {
 				
 				if ( ltrim( $c, '#&+!' ) == $channel ) {
-					return $channel;
+					return $c;
 				}
 				
 			}
 			
-			return false;
+			return $channel;
 			
 		}
 		
