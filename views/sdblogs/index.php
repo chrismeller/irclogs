@@ -1,3 +1,4 @@
+<h1>Available Channels</h1>
 <ul id="channels">
 	
 	<?php
