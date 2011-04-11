@@ -23,8 +23,8 @@
 		}
 		
 		public function action_channel ( $channel ) {
-			die('foo');
-			$years = $this->logs->get_years( $channel );
+			
+			$years = $this->logs->get_channel_years( $channel );
 			
 			$this->template->title = 'Logs :: ' . $channel;
 			$this->template->content = View::factory('sdblogs/channel')
