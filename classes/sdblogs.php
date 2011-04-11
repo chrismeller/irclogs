@@ -39,6 +39,26 @@
 			
 		}
 		
+		public function get_channel_years ( $channel ) {
+			
+			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'' . $channel . '\'' );
+			
+			$years = array();
+			foreach ( $result->response as $item ) {
+				
+				foreach ( $item->Attribute as $attribute ) {
+					
+					$years[] = (string)$attribute->Name;
+					
+				}
+				
+			}
+			
+			return $years;
+					
+			
+		}
+		
 	}
 
 ?>
