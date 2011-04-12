@@ -79,6 +79,7 @@
 			}
 			
 			natsort($years);
+			array_reverse( $years );	// reverse of natsort
 			
 			return $years;
 			
@@ -104,6 +105,7 @@
 			}
 			
 			natsort($months);
+			array_reverse( $months );	// reverse of natsort
 			
 			return $months;
 			
@@ -129,6 +131,7 @@
 			}
 			
 			natsort($days);
+			array_reverse( $days );		// reverse of natsort
 			
 			return $days;
 			
