@@ -81,7 +81,33 @@
 			natsort($years);
 			
 			return $years;
+			
+		}
+		
+		public function get_channel_months ( $channel, $year ) {
+			
+			$benchmark = Profiler::start('sdblogs', 'get_channel_months');
+			
+			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'' . $channel . '-' . $year . '\'' );
+			
+			Profiler::stop( $benchmark );
+			
+			$months = array();
+			foreach ( $result->response as $item ) {
+				
+				foreach ( $item->Attribute as $attribute ) {
 					
+					$months[] = (string)$attribute->Name;
+					
+				}
+				
+			}
+			
+			natsort($months);
+			
+			return $months;
+			
+		}
 			
 		}
 		
