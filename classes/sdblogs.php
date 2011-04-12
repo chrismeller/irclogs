@@ -22,7 +22,11 @@
 		
 		public function get_channels ( ) {
 			
+			$benchmark = Profiler::start('sdblogs', 'get_channels');
+			
 			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'channels\'' );
+			
+			Profiler::stop( $benchmark );
 			
 			$channels = array();
 			foreach ( $result->response as $item ) {
@@ -57,7 +61,11 @@
 		
 		public function get_channel_years ( $channel ) {
 			
+			$benchmark = Profiler::start('sdblogs', 'get_channel_years');
+			
 			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'' . $channel . '\'' );
+			
+			Profiler::stop( $benchmark );
 			
 			$years = array();
 			foreach ( $result->response as $item ) {
