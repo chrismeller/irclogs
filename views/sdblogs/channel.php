@@ -8,7 +8,7 @@
 			$link_chan = ltrim( $channel, '#&+!' );
 			$link = Route::get('sdblogs-year')->uri( array( 'channel' => $link_chan, 'year' => $year ) );
 			
-			echo '<li>' . HTML::anchor( $link, HTML::chars( $chan ) ) . '</li>';
+			echo '<li>' . HTML::anchor( $link, HTML::chars( $year ) ) . '</li>';
 			
 		}
 	
