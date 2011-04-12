@@ -137,6 +137,45 @@
 			
 		}
 		
+		public function get_channel_content ( $channel, $year, $month, $day ) {
+			
+			$benchmark = Profiler::start('sdblogs', 'get_channel_content');
+			
+			$key = implode( '-', array( $year, $month, $day ) ) . '%';
+			$query = $this->build_channel_query( $channel, $year, $month, $day );
+			
+			$result = $this->sdb->select( $query );
+			
+			Profiler::stop( $benchmark );
+			
+			return $result;
+			
+		}
+		
+		public function get_more_channel_content ( $channel, $year, $month, $day, $next_token ) {
+			
+			$benchmark = Profiler::start('sdblogs', 'get_more_channel_content');
+			
+			$query = $this->build_channel_query($channel, $year, $month, $day);
+			
+			$result = $this->sdb->select( $query, false, array( 'NextToken' => $next_token ) );
+			
+			Profiler::stop( $benchmark );
+			
+			return $result;
+			
+		}
+		
+		private function build_channel_query ( $channel, $year, $month, $day ) {
+			
+			$key = implode( '-', array( $year, $month, $day ) ) . '%';
+			
+			$query = 'select * from ' . $this->data_domain . ' where channel = \'' . $channel . '\' and tstamp like \'' . $key . '\'';
+			
+			return $query;
+			
+		}
+		
 	}
 
 ?>
