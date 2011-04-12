@@ -39,6 +39,8 @@
 				
 			}
 			
+			natsort($channels);
+			
 			return $channels;
 			
 		}
