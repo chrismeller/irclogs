@@ -1,5 +1,5 @@
 <h1><?php echo $channel; ?>: <?php echo $year; ?></h1>
-<ul id="months">
+<ol id="months">
 	
 	<?php
 	
@@ -14,4 +14,4 @@
 	
 	?>
 	
-</ul>
+</ol>

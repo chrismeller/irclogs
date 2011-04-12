@@ -1,5 +1,5 @@
 <h1><?php echo $channel; ?> Logs</h1>
-<ul id="years">
+<ol id="years">
 	
 	<?php
 	
@@ -14,4 +14,4 @@
 	
 	?>
 	
-</ul>
+</ol>

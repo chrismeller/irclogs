@@ -1,5 +1,5 @@
 <h1>Available Channels</h1>
-<ul id="channels">
+<ol id="channels">
 	
 	<?php
 	
@@ -14,4 +14,4 @@
 	
 	?>
 	
-</ul>
+</ol>
