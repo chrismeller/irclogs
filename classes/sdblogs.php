@@ -78,6 +78,8 @@
 				
 			}
 			
+			natsort($years);
+			
 			return $years;
 					
 			
