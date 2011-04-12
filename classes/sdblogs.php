@@ -108,6 +108,29 @@
 			return $months;
 			
 		}
+		
+		public function get_channel_days ( $channel, $year, $month ) {
+			
+			$benchmark = Profiler::start('sdblogs', 'get_channel_days');
+			
+			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'' . $channel . '-' . $year . '-' . $month . '\'' );
+			
+			Profiler::stop( $benchmark );
+			
+			$days = array();
+			foreach ( $result->response as $item ) {
+				
+				foreach ( $item->Attribute as $attribute ) {
+					
+					$days[] = (string)$attribute->Name;
+					
+				}
+				
+			}
+			
+			natsort($days);
+			
+			return $days;
 			
 		}
 		
