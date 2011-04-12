@@ -66,6 +66,40 @@
 				->bind('days', $days);
 			
 		}
+		
+		public function load_test_data ( ) {
+			
+			require_once( Kohana::find_file( 'vendor', 'awstools/aws' ) );
+			
+			$data_domain = Kohana::config( 'sdb-logs-viewer.data_domain' );
+			$index_domain = Kohana::config( 'sdb-logs-viewer.index_domain' );
+			$aws_key = Kohana::config( 'sdb-logs-viewer.aws_key' );
+			$aws_secret = Kohana::config( 'sdb-logs-viewer.aws_secret' );
+			
+			$sdb = new SimpleDB( $aws_key, $aws_secret );
+			
+			$channels = array(
+				'#habari' => '#habari',
+				'#mellershole' => '#mellershole',
+			);
+			
+			$sdb->put_attributes( $index_domain, 'channels', $channels );
+			
+			$sdb->put_attributes( $index_domain, '#habari', array( '2011' => '2011', '2010' => '2010' ) );
+			$sdb->put_attributes( $index_domain, '#mellershole', array( '2009' => '2009' ) );
+			
+			$sdb->put_attributes( $index_domain, '#habari-2011', array( '01' => '01', '02' => '02', '03' => '03', '04' => '04' ) );
+			$sdb->put_attributes( $index_domain, '#habari-2010', array( '11' => '11', '12' => '12' ) );
+			
+			$sdb->put_attributes( $index_domain, '#mellershole-2009', array( '12' => '12' ) );
+			
+			$sdb->put_attributes( $index_domain, '#habari-2011-01', array( '01' => '01', '02' => '02' ) );
+			$sdb->put_attributes( $index_domain, '#habari-2011-02', array( '03' => '03', '04' => '04' ) );
+			
+			$sdb->put_attributes( $index_domain, '#mellershole-2009-12', array( '30' => '30', '31' => '31' ) );
+			
+		}
+		
 	}
 
 ?>
