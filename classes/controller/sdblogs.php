@@ -67,6 +67,27 @@
 			
 		}
 		
+		public function action_day ( $channel, $year, $month, $day ) {
+			
+			// get the full channel name
+			$channel = $this->logs->get_channel_name($channel);
+			
+			$result = $this->logs->get_channel_content( $channel, $year, $month, $day );
+			
+			$content = $result->response;
+			$next_token = $result->next_token;
+			
+			$this->template->title = 'Logs :: ' . $channel;
+			$this->template->content = View::factory('sdblogs/day')
+				->bind('channel', $channel)
+				->bind('year', $year)
+				->bind('month', $month)
+				->bind('day', $day)
+				->bind('content', $content)
+				->bind('next_token', $next_token);
+			
+		}
+		
 		public function load_test_data ( ) {
 			
 			require_once( Kohana::find_file( 'vendor', 'awstools/aws' ) );
