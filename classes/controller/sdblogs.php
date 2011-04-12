@@ -36,6 +36,36 @@
 			
 		}
 		
+		public function action_year ( $channel, $year ) {
+			
+			// get the full channel name
+			$channel = $this->logs->get_channel_name($channel);
+			
+			$months = $this->logs->get_channel_months( $channel, $year );
+			
+			$this->template->title = 'Logs :: ' . $channel;
+			$this->template->content = View::factory('sdblogs/year')
+				->bind('channel', $channel)
+				->bind('year', $year)
+				->bind('months', $months);
+			
+		}
+		
+		public function action_month ( $channel, $year, $month ) {
+			
+			// get the full channel name
+			$channel = $this->logs->get_channel_name($channel);
+			
+			$days = $this->logs->get_channel_days( $channel, $year, $month );
+			
+			$this->template->title = 'Logs :: ' . $channel;
+			$this->template->content = View::factory('sdblogs/month')
+				->bind('channel', $channel)
+				->bind('year', $year)
+				->bind('month', $month)
+				->bind('days', $days);
+			
+		}
 	}
 
 ?>
