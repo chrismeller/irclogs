@@ -121,7 +121,7 @@ if ( Route::cache() == false ) {
 	
 	Route::set('default', '(<controller>(/<action>(/<id>)))')
 		->defaults(array(
-			'controller' => 'main',
+			'controller' => 'logs',
 			'action'     => 'index',
 		));
 		
