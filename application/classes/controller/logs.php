@@ -43,7 +43,7 @@
 			
 			$months = $this->logs->get_channel_months( $channel, $year );
 			
-			$this->template->title = 'Logs :: ' . $channel;
+			$this->template->title = $channel;
 			$this->template->content = View::factory('logs/year')
 				->bind('channel', $channel)
 				->bind('year', $year)
@@ -58,7 +58,7 @@
 			
 			$days = $this->logs->get_channel_days( $channel, $year, $month );
 			
-			$this->template->title = 'Logs :: ' . $channel;
+			$this->template->title = $channel;
 			$this->template->content = View::factory('logs/month')
 				->bind('channel', $channel)
 				->bind('year', $year)
@@ -77,7 +77,7 @@
 			$content = $result->response;
 			$next_token = $result->next_token;
 			
-			$this->template->title = 'Logs :: ' . $channel;
+			$this->template->title = $channel;
 			$this->template->content = View::factory('logs/day')
 				->bind('channel', $channel)
 				->bind('year', $year)
