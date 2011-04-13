@@ -7,6 +7,6 @@
 	$text = $date->format( 'H:i:s' );
 	$text = '[' . $text . ']';
 	
-	echo HTML::anchor( $link, $text, array( 'id' => $id ) );
+	echo HTML::anchor( $link, $text, array( 'id' => $id, 'class' => 'timestamp' ) );
 
 ?>
