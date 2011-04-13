@@ -176,7 +176,7 @@
 			
 			$key = implode( '-', array( $year, $month, $day ) ) . '%';
 			
-			$query = 'select * from ' . $this->data_domain . ' where channel = \'' . $channel . '\' and tstamp like \'' . $key . '\'';
+			$query = 'select * from ' . $this->data_domain . ' where channel = \'' . $channel . '\' and tstamp like \'' . $key . '\' order by tstamp asc';
 			
 			return $query;
 			
