@@ -168,34 +168,32 @@
 			
 		}
 		
-		public function get_channel_content ( $channel, $year, $month, $day ) {
+		public function get_channel_content ( $channel, $year, $month, $day, $next_token = null ) {
+			
+			$cache_key = 'channel_content:' . implode( ':', array( $channel, $year, $month, $day, $next_token ) );
+			if ( $this->cache->get( $cache_key ) !== null ) {
+				return $this->cache->get( $cache_key );
+			}
 			
 			$benchmark = Profiler::start('sdblogs', 'get_channel_content');
 			
 			$key = implode( '-', array( $year, $month, $day ) ) . '%';
 			$query = $this->build_channel_query( $channel, $year, $month, $day );
 			
-			$result = $this->sdb->select( $query );
+			if ( $next_token != null ) {
+				$options = array( 'NextToken' => $next_token );
+			}
+			else {
+				$options = array();
+			}
+			
+			$result = $this->sdb->select( $query, false, $options );
 						
 			$result = $this->process_result( $result );
 						
 			Profiler::stop( $benchmark );
 			
-			return $result;
-			
-		}
-		
-		public function get_more_channel_content ( $channel, $year, $month, $day, $next_token ) {
-			
-			$benchmark = Profiler::start('sdblogs', 'get_more_channel_content');
-			
-			$query = $this->build_channel_query($channel, $year, $month, $day);
-			
-			$result = $this->sdb->select( $query, false, array( 'NextToken' => $next_token ) );
-			
-			$result = $this->process_result( $result );
-			
-			Profiler::stop( $benchmark );
+			$this->cache->set( $cache_key, $result );
 			
 			return $result;
 			
