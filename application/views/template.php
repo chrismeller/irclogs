@@ -4,20 +4,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo Kohana::$charset ?>" />
 	<title><?php echo $title; ?></title>
 	
-	<link rel="stylesheet" href="<?php echo URL::base(); ?>media/css/bluetrip/css/screen.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php echo URL::base(); ?>media/css/bluetrip/css/print.css" type="text/css" media="print" />	
-	<!--[if IE]>
-		<link rel="stylesheet" href="<?php echo URL::base(); ?>media/css/bluetrip/css/ie.css" type="text/css" media="screen, projection" />
-	<![endif]-->
-	
-	<?php /*
-	<link rel="stylesheet" href="<?php echo URL::base(); ?>media/css/blueprint/blueprint/screen.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php echo URL::base(); ?>media/css/blueprint/blueprint/print.css" type="text/css" media="print" />
-	<!--[if lt IE 8]>
-		<link rel="stylesheet" href="<?php echo URL::base(); ?>media/css/blueprint/blueprint/ie.css" type="text/css" media="screen, projection" />
-	<![endif]-->
-	*/ ?>
-	
 	<?php
 	
 		foreach ( $styles as $style => $media ) {
