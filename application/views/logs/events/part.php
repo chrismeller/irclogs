@@ -6,6 +6,6 @@
 		$message = '(' . $message . ')';
 	}
 
-	echo '<span class="part">*** ' . $line['nick'] . ' has left ' . $channel . ' ' . HTML::chars( $message ) . '</span>';
+	echo '<span class="serv part">*** ' . $line['nick'] . ' has left ' . $channel . ' ' . HTML::chars( $message ) . '</span>';
 
 ?>
