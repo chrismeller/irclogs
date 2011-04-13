@@ -4,7 +4,16 @@
 	<?php
 	
 		foreach ( $content as $line ) {
-			echo '<li>' . $line . '</li>';
+			
+			echo '<li>';
+			
+			echo View::factory('logs/events/timestamp')->bind( 'tstamp', $line['tstamp'] );
+			
+			// now just load the view for the type of event we're displaying, handing it the entire line
+			echo View::factory('logs/events/' . $line['type'])->bind( 'line', $line )->bind( 'channel', $channel );
+			
+			echo '</li>';
+			
 		}
 	
 	?>
