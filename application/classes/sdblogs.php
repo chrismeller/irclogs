@@ -18,9 +18,15 @@
 			
 			$this->sdb = new SimpleDB( $aws_key, $aws_secret );
 			
+			$this->cache = Cache::instance( 'sdblogs' );
+			
 		}
 		
 		public function get_channels ( ) {
+			
+			if ( $this->cache->get( 'channels' ) !== null ) {
+				return $this->cache->get( 'channels' );
+			}
 			
 			$benchmark = Profiler::start('sdblogs', 'get_channels');
 			
@@ -40,6 +46,8 @@
 			}
 			
 			natsort($channels);
+			
+			$this->cache->set( 'channels', $channels );
 			
 			return $channels;
 			
@@ -63,6 +71,11 @@
 		
 		public function get_channel_years ( $channel ) {
 			
+			$cache_key = 'channel_years:' . $channel;
+			if ( $this->cache->get( $cache_key ) !== null ) {
+				return $this->cache->get( $cache_key );
+			}
+			
 			$benchmark = Profiler::start('sdblogs', 'get_channel_years');
 			
 			$result = $this->sdb->select( 'select * from ' . $this->index_domain . ' where itemName() = \'' . $channel . '\'' );
@@ -83,11 +96,18 @@
 			natsort($years);
 			$years = array_reverse( $years );	// reverse of natsort
 			
+			$this->cache->set( $cache_key, $years );
+			
 			return $years;
 			
 		}
 		
 		public function get_channel_months ( $channel, $year ) {
+			
+			$cache_key = 'channel_months:' . $channel . ':' . $year;
+			if ( $this->cache->get( $cache_key ) !== null ) {
+				return $this->cache->get( $cache_key );
+			}
 			
 			$benchmark = Profiler::start('sdblogs', 'get_channel_months');
 			
@@ -109,11 +129,18 @@
 			natsort($months);
 			$months = array_reverse( $months );	// reverse of natsort
 			
+			$this->cache->set( $cache_key, $months );
+			
 			return $months;
 			
 		}
 		
 		public function get_channel_days ( $channel, $year, $month ) {
+			
+			$cache_key = 'cahnnel_days:' . $channel . ':' . $year . ':' . $month;
+			if ( $this->cache->get( $cache_key ) !== null ) {
+				return $this->cache->get( $cache_key );
+			}
 			
 			$benchmark = Profiler::start('sdblogs', 'get_channel_days');
 			
@@ -134,6 +161,8 @@
 			
 			natsort($days);
 			$days = array_reverse( $days );		// reverse of natsort
+			
+			$this->cache->set( $cache_key, $days );
 			
 			return $days;
 			
