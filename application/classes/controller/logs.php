@@ -74,8 +74,8 @@
 			
 			$result = $this->logs->get_channel_content( $channel, $year, $month, $day );
 			
-			$content = $result->response;
-			$next_token = $result->next_token;
+			$content = $result['response'];
+			$next_token = $result['next_token'];
 			
 			$this->template->title = $channel;
 			$this->template->content = View::factory('logs/day')

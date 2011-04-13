@@ -147,7 +147,9 @@
 			$query = $this->build_channel_query( $channel, $year, $month, $day );
 			
 			$result = $this->sdb->select( $query );
-			
+						
+			$result = $this->process_result( $result );
+						
 			Profiler::stop( $benchmark );
 			
 			return $result;
@@ -162,6 +164,8 @@
 			
 			$result = $this->sdb->select( $query, false, array( 'NextToken' => $next_token ) );
 			
+			$result = $this->process_result( $result );
+			
 			Profiler::stop( $benchmark );
 			
 			return $result;
@@ -175,6 +179,36 @@
 			$query = 'select * from ' . $this->data_domain . ' where channel = \'' . $channel . '\' and tstamp like \'' . $key . '\'';
 			
 			return $query;
+			
+		}
+		
+		private function process_result ( $result ) {
+			
+			// convert the object to a real array and compress our attributes
+			$results = array();
+			foreach ( $result->response as $r ) {
+				
+				$name = (string)$r->Name;
+				
+				$results[ $name ] = array();
+				
+				foreach ( $r->Attribute as $a ) {
+					$a = (array)$a;
+					
+					if ( empty( $a['Value'] ) ) {
+						continue;
+					}
+					
+					$results[ $name ][ $a['Name'] ] = $a['Value'];
+				}
+			}
+			
+			$result = array(
+				'next_token' => $result->next_token,
+				'response' => $results,
+			);
+			
+			return $result;
 			
 		}
 		
