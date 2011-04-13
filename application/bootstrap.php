@@ -119,6 +119,34 @@ Kohana::modules(array(
 // define routes only if they aren't cached
 if ( Route::cache() == false ) {
 	
+	Route::set( 'logs-channel', '<channel>' )
+		->defaults( array(
+			'controller' => 'logs',
+			'action' => 'channel',
+		)
+	);
+	
+	Route::set( 'logs-year', '<channel>/<year>' )
+		->defaults( array(
+			'controller' => 'logs',
+			'action' => 'year',
+		)
+	);
+	
+	Route::set( 'logs-month', '<channel>/<year>/<month>' )
+		->defaults( array(
+			'controller' => 'logs',
+			'action' => 'month',
+		)
+	);
+	
+	Route::set( 'logs-day', '<channel>/<year>/<month>/<day>' )
+		->defaults( array(
+			'controller' => 'logs',
+			'action' => 'day',
+		)
+	);
+	
 	Route::set('default', '(<controller>(/<action>(/<id>)))')
 		->defaults(array(
 			'controller' => 'logs',
