@@ -1,0 +1,12 @@
+body { font-family: sans-serif; padding:1em 4em; line-height:140%; color:#010101; background:#f3f3f3; }
+.time { font-size:.8em; display:block; float:left; clear:left; width:80px; }
+.line { float:left; width:600px; }
+.nick { font-size:.9em; font-weight:bold; }
+.serv { font-size:.9em; color: #5C3566; }
+.join { color: #4E9A06; }
+.quit { color: #8F5902; }
+li { font-size:.8em; list-style-type: square; margin:0; padding:0; }
+h1 { font-family: Georgia, serif; font-weight:normal; font-size:60px; }
+h2 { font-family: Georgia, serif; font-weight:normal; font-size:20px; }
+
+.timestamp { padding-right: .8em; }
