@@ -199,6 +199,30 @@
 			
 		}
 		
+		public function get_channel_grep ( $channel, $grep ) {
+			
+			$cache_key = 'channel_grep:' . $channel . ':' . $grep;
+			if ( $this->cache->get( $cache_key ) !== null ) {
+				return $this->cache->get( $cache_key );
+			}
+			
+			$benchmark = Profiler::start('sdblogs', 'get_channel_grep');
+			
+			// the tstamp like is included because it has to be in order to sort by it - stupid aws
+			$query = 'select * from ' . $this->data_domain . ' where channel = \'' . $channel . '\' and tstamp like \'%\' and message like \'%' . $grep . '%\' order by tstamp desc';
+			
+			$result = $this->sdb->select( $query );
+			
+			$result = $this->process_result( $result );
+			
+			Profiler::stop( $benchmark );
+			
+			$this->cache->set( $cache_key, $result );
+			
+			return $result;
+			
+		}
+		
 		private function build_channel_query ( $channel, $year, $month, $day ) {
 			
 			$key = implode( '-', array( $year, $month, $day ) ) . '%';

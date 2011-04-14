@@ -88,6 +88,25 @@
 			
 		}
 		
+		public function action_grep ( $channel, $grep ) {
+			
+			// get the full channel name
+			$channel = $this->logs->get_channel_name($channel);
+			
+			$result = $this->logs->get_channel_grep( $channel, $grep );
+			
+			$content = $result['response'];
+			$next_token = $result['next_token'];
+			
+			$this->template->title = $channel;
+			$this->template->content = View::factory('logs/grep')
+				->bind('channel', $channel)
+				->bind('grep', $grep)
+				->bind('content', $content)
+				->bind('next_token', $next_token);
+			
+		}
+		
 		public function load_test_data ( ) {
 			
 			require_once( Kohana::find_file( 'vendor', 'awstools/aws' ) );

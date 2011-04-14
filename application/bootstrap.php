@@ -126,6 +126,13 @@ if ( Route::cache() == false ) {
 		)
 	);
 	
+	Route::set( 'logs-grep', '<channel>/grep/<grep>', array( 'grep' => '.*' ) )
+		->defaults( array(
+			'controller' => 'logs',
+			'action' => 'grep',
+		)
+	);
+	
 	Route::set( 'logs-year', '<channel>/<year>' )
 		->defaults( array(
 			'controller' => 'logs',
@@ -144,6 +151,13 @@ if ( Route::cache() == false ) {
 		->defaults( array(
 			'controller' => 'logs',
 			'action' => 'day',
+		)
+	);
+	
+	Route::set( 'logs-more', '<channel>/<year>/<month>/<day>/<next_token>' )
+		->defaults( array(
+			'controller' => 'logs',
+			'action' => 'more',
 		)
 	);
 	
