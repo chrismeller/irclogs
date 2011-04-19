@@ -1,4 +1,13 @@
 <h1><?php echo $channel; ?>: <?php echo $year . '-' . $month . '-' . $day; ?></h1>
+<?php
+
+	echo View::factory('logs/js')
+		->bind( 'channel', $channel )
+		->bind( 'year', $year )
+		->bind( 'month', $month )
+		->bind( 'day', $day );
+
+?>
 <ol id="content">
 	
 	<?php
