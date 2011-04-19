@@ -263,7 +263,7 @@
 			
 		}
 		
-		public static function trim_chan ( $name ) {
+		public static function trim_chan ( $channel ) {
 			
 			return ltrim( $channel, '#&+!' );
 			
