@@ -5,7 +5,7 @@
 	
 		foreach ( $channels as $chan ) {
 			
-			$link_chan = ltrim( $chan, '#&+!' );
+			$link_chan = SDBLogs::trim_chan( $channel );
 			$link = Route::get('logs-channel')->uri( array( 'channel' => $link_chan ) );
 			
 			echo '<li>' . HTML::anchor( $link, HTML::chars( $chan ) ) . '</li>';

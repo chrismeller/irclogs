@@ -5,7 +5,7 @@
 	
 		foreach ( $days as $day ) {
 			
-			$link_chan = ltrim( $channel, '#&+!' );
+			$link_chan = SDBLogs::trim_chan( $channel );
 			$link = Route::get('logs-day')->uri( array( 'channel' => $link_chan, 'year' => $year, 'month' => $month, 'day' => $day ) );
 			
 			echo '<li>' . HTML::anchor( $link, HTML::chars( $year . '-' . $month . '-' . $day ) ) . '</li>';

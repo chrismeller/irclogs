@@ -263,6 +263,12 @@
 			
 		}
 		
+		public static function trim_chan ( $name ) {
+			
+			return ltrim( $channel, '#&+!' );
+			
+		}
+		
 	}
 
 ?>
