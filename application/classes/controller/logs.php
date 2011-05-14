@@ -88,6 +88,26 @@
 			
 		}
 		
+		public function action_more ( $channel, $year, $month, $day, $next_token = '' ) {
+			
+			// get the full channel name
+			$channel = $this->logs->get_channel_name($channel);
+			
+			$result = $this->logs->get_channel_content( $channel, $year, $month, $day, $next_token );
+			
+			$content = $result['response'];
+			$next_token = $result['next_token'];
+			
+			$this->template = View::factory('logs/more')
+				->bind('channel', $channel)
+				->bind('year', $year)
+				->bind('month', $month)
+				->bind('day', $day)
+				->bind('content', $content)
+				->bind('next_token', $next_token);
+			
+		}
+		
 		public function action_grep ( $channel, $grep ) {
 			
 			// get the full channel name
