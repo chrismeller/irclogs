@@ -14,7 +14,7 @@ var Logs = {
 
 	scroll: function ( ) {
 		
-		if ( $(window).scrollTop() >= $(document).height() - ( $(window).height() * 2 ) ) {
+		if ( $(window).scrollTop() >= $(document).height() - ( $(window).height() * 3 ) ) {
 			
 			Logs.fetch();
 			
