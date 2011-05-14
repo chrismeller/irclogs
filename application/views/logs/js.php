@@ -12,7 +12,7 @@
 		}
 	}
 	
-	$js = implode( ",\n", $js );
+	$js = implode( ";\n", $js ) . ';';
 	
 	echo '<script type="text/javascript">' . $js . '</script>';
 
