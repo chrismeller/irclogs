@@ -14,7 +14,7 @@
 	
 	<script type="text/javascript">
 		var Site = {
-			base_url: '<?php echo URL::site(); ?>'
+			base_url: '<?php echo URL::base( true ); ?>'
 		}
 	</script>
 	
