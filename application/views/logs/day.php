@@ -5,7 +5,8 @@
 		->bind( 'channel', $channel )
 		->bind( 'year', $year )
 		->bind( 'month', $month )
-		->bind( 'day', $day );
+		->bind( 'day', $day )
+		->bind( 'next_token', $next_token );
 
 ?>
 <ol id="content">
